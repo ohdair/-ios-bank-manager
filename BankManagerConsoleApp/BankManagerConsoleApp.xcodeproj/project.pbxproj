@@ -15,6 +15,7 @@
 		F62293F729A73C4A0050908A /* Bank.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62293F629A73C4A0050908A /* Bank.swift */; };
 		F62293F929A84E380050908A /* ConsoleMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62293F829A84E380050908A /* ConsoleMessage.swift */; };
 		F62293FF29AC46400050908A /* ConsoleMessagable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62293FE29AC46400050908A /* ConsoleMessagable.swift */; };
+		F622940429ACE76A0050908A /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B85B8729A4595300325F96 /* LinkedList.swift */; };
 		F6B85B8229A4572E00325F96 /* BankManagerConsoleAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B85B8129A4572E00325F96 /* BankManagerConsoleAppTests.swift */; };
 		F6B85B8829A4595300325F96 /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B85B8729A4595300325F96 /* LinkedList.swift */; };
 /* End PBXBuildFile section */
@@ -250,6 +251,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F622940429ACE76A0050908A /* LinkedList.swift in Sources */,
 				F6B85B8229A4572E00325F96 /* BankManagerConsoleAppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

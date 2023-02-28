@@ -6,4 +6,6 @@
 
 import Foundation
 
-Bank().execute()
+let sesacBank = Bank()
+
+sesacBank.execute()

@@ -45,6 +45,28 @@ final class LinkedList<T> {
     }
 }
 
+extension LinkedList: Sequence {
+    typealias Iterator = LinkedListIterator<T>
+    func makeIterator() -> LinkedList.Iterator {
+        return LinkedListIterator(start: head)
+    }
+}
+
+struct LinkedListIterator<T>: IteratorProtocol {
+    typealias Element = T
+    var current: Node<T>?
+
+    init(start: Node<T>?) {
+        current = start
+    }
+
+    mutating func next() -> Element? {
+        guard let value = current?.value else { return nil }
+        current = current?.next
+        return value
+    }
+}
+
 class Node<T> {
     var value: T
     var next: Node<T>?

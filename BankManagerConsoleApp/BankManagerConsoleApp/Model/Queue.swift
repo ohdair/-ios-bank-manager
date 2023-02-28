@@ -18,7 +18,7 @@ struct Queue<T> {
     func dequeue() -> T? {
         return list.removeFirst()
     }
-    
+
     func clear() {
         list.removeAll()
     }
@@ -29,5 +29,13 @@ struct Queue<T> {
     
     func isEmpty() -> Bool {
         return list.isEmpty
+    }
+}
+
+extension Queue: Sequence {
+    typealias Iterator = LinkedListIterator<T>
+
+    func makeIterator() -> LinkedListIterator<T> {
+        return list.makeIterator()
     }
 }
