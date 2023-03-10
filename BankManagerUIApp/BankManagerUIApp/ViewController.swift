@@ -59,9 +59,9 @@ class ViewController: UIViewController {
         let currentTime = Date().timeIntervalSinceReferenceDate
         let elapsedTime = currentTime - startTime
         let seconds = Int(elapsedTime)
-        let milliseconds = Int((elapsedTime * 1000).truncatingRemainder(dividingBy: 1000))
-        let nanoseconds = Int((elapsedTime * 1000000000).truncatingRemainder(dividingBy: 1000000))
-        let elapsedTimeText = String(format: "%02d:%02d:%03d", seconds / 60 % 60, seconds % 60, milliseconds)
+        let milliseconds = Int((elapsedTime * 100).truncatingRemainder(dividingBy: 100))
+        let nanoseconds = Int((elapsedTime * 1000000).truncatingRemainder(dividingBy: 1000))
+        let elapsedTimeText = String(format: "%02d:%02d:%03d", seconds, milliseconds, nanoseconds)
         timerLabel.text = elapsedTimeText
     }
 
