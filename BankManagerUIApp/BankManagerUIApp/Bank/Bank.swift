@@ -59,7 +59,7 @@ class Bank {
         for waitingNumber in clientsPerDay + 1...clientsPerDay + Constants.tenOfClients {
             let client = Client(waitingNumber: waitingNumber)
             let queue = bankQueue.get(of: client.type)
-            NotificationCenter.default.post(name: .addClient, object: nil, userInfo: ["client": (waitingNumber, client.type)])
+            NotificationCenter.default.post(name: .addClient, object: nil, userInfo: ["client": client])
             queue.enqueue(client)
             clientsPerDay += 1
         }

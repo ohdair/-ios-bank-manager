@@ -36,15 +36,15 @@ class ViewController: UIViewController {
     }
 
     @objc func makeWaitClient(_ notification: Notification) {
-        guard let client = notification.userInfo?["client"] as? (number: Int, type: BankingType) else {
+        guard let client = notification.userInfo?["client"] as? Client else {
             return
         }
         customView.waitingStackView.addArrangedSubview(makeLabel())
 
         func makeLabel() -> UILabel {
             let label = UILabel()
-            label.tag = client.number
-            label.text = "\(client.number) - \(client.type.description)"
+            label.tag = client.waitingNumber
+            label.text = "\(client.waitingNumber) - \(client.type.description)"
             label.font = UIFont.boldSystemFont(ofSize: 20)
             label.textAlignment = .center
             label.textColor = colorOfType(client.type)
