@@ -7,11 +7,30 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    // MARK: 타이머 변수선언
+    let timerLabel = UILabel()
+        var startTime: TimeInterval = 0
+        var timer: Timer?
 
     private let customView = CustomView()
     private let bank = Bank()
 
     override func viewDidLoad() {
+        
+        // MARK: 타이머
+        view.addSubview(timerLabel)
+        startTime = Date().timeIntervalSinceReferenceDate
+        timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { [weak self] _ in
+            self?.updateTimerLabel()
+        })
+        
+        timerLabel.translatesAutoresizingMaskIntoConstraints = false
+        timerLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
+        timerLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        timerLabel.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor).isActive = true
+        
+        
         super.viewDidLoad()
 
         view.addSubview(customView.addClientButton)
@@ -33,6 +52,17 @@ class ViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(makeWaitClient), name: .addClient, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(serveBankingClient), name: .bankingClient, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(finishBankingClient), name: .finishedBankingClient, object: nil)
+    }
+    
+    // MARK: 타이머 관련 메서드
+    func updateTimerLabel() {
+        let currentTime = Date().timeIntervalSinceReferenceDate
+        let elapsedTime = currentTime - startTime
+        let seconds = Int(elapsedTime)
+        let milliseconds = Int((elapsedTime * 1000).truncatingRemainder(dividingBy: 1000))
+        let nanoseconds = Int((elapsedTime * 1000000000).truncatingRemainder(dividingBy: 1000000))
+        let elapsedTimeText = String(format: "%02d:%02d:%03d", seconds / 60 % 60, seconds % 60, milliseconds)
+        timerLabel.text = elapsedTimeText
     }
 
     @objc func makeWaitClient(_ notification: Notification) {
