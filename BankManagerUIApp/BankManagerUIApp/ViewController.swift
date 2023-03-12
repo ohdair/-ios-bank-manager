@@ -7,30 +7,10 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
-    // MARK: 타이머 변수선언
-    let timerLabel = UILabel()
-        var startTime: TimeInterval = 0
-        var timer: Timer?
-
     private let customView = CustomView()
     private let bank = Bank()
 
     override func viewDidLoad() {
-        
-        // MARK: 타이머
-        view.addSubview(timerLabel)
-        startTime = Date().timeIntervalSinceReferenceDate
-        timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { [weak self] _ in
-            self?.updateTimerLabel()
-        })
-        
-        timerLabel.translatesAutoresizingMaskIntoConstraints = false
-        timerLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
-        timerLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        timerLabel.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor).isActive = true
-        
-        
         super.viewDidLoad()
 
         view.addSubview(customView.addClientButton)
@@ -52,17 +32,14 @@ class ViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(makeWaitClient), name: .addClient, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(serveBankingClient), name: .bankingClient, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(finishBankingClient), name: .finishedBankingClient, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateTimerLabel), name: .bankTimer, object: nil)
     }
     
-    // MARK: 타이머 관련 메서드
-    func updateTimerLabel() {
-        let currentTime = Date().timeIntervalSinceReferenceDate
-        let elapsedTime = currentTime - startTime
-        let seconds = Int(elapsedTime)
-        let milliseconds = Int((elapsedTime * 100).truncatingRemainder(dividingBy: 100))
-        let nanoseconds = Int((elapsedTime * 1000000).truncatingRemainder(dividingBy: 1000))
-        let elapsedTimeText = String(format: "%02d:%02d:%03d", seconds, milliseconds, nanoseconds)
-        timerLabel.text = elapsedTimeText
+    @objc func updateTimerLabel(_ notification: Notification) {
+        guard let bankTimer = notification.userInfo?["bankTimer"] as? String else {
+            return
+        }
+        customView.timerLabel.text = "업무 시간 - \(bankTimer)"
     }
 
     @objc func makeWaitClient(_ notification: Notification) {
@@ -118,6 +95,7 @@ class ViewController: UIViewController {
         customView.waitingStackView.removeAllSubviews()
         customView.bankingStackView.removeAllSubviews()
         bank.reset()
+        customView.timerLabel.text = "업무 시간 - 00:00:000"
     }
 }
 
@@ -131,4 +109,5 @@ extension Notification.Name {
     static let addClient = Notification.Name("addClient")
     static let bankingClient = Notification.Name("bankingClient")
     static let finishedBankingClient = Notification.Name("finishedBankingClient")
+    static let bankTimer = Notification.Name("bankTimer")
 }

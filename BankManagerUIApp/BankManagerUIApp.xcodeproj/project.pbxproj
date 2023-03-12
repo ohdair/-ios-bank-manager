@@ -24,6 +24,7 @@
 		F687E4F029B9FFEE004EB049 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F687E4E729B9FFEE004EB049 /* Constants.swift */; };
 		F687E50429BB1B3F004EB049 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = F687E50229BB1B3F004EB049 /* Queue.swift */; };
 		F687E50529BB1B3F004EB049 /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F687E50329BB1B3F004EB049 /* LinkedList.swift */; };
+		F687E50729BDBB72004EB049 /* BankTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F687E50629BDBB72004EB049 /* BankTimer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		F687E4E729B9FFEE004EB049 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F687E50229BB1B3F004EB049 /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		F687E50329BB1B3F004EB049 /* LinkedList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkedList.swift; sourceTree = "<group>"; };
+		F687E50629BDBB72004EB049 /* BankTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankTimer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +160,7 @@
 				F687E4E329B9FFEE004EB049 /* Client.swift */,
 				F687E4E429B9FFEE004EB049 /* Bank.swift */,
 				F687E4E529B9FFEE004EB049 /* BankingType.swift */,
+				F687E50629BDBB72004EB049 /* BankTimer.swift */,
 			);
 			path = Bank;
 			sourceTree = "<group>";
@@ -320,6 +323,7 @@
 				F687E4F029B9FFEE004EB049 /* Constants.swift in Sources */,
 				F687E4EF29B9FFEE004EB049 /* BankingType.swift in Sources */,
 				C7694E3B259C3E9F0053667F /* AppDelegate.swift in Sources */,
+				F687E50729BDBB72004EB049 /* BankTimer.swift in Sources */,
 				C7694E3D259C3E9F0053667F /* SceneDelegate.swift in Sources */,
 				F687E4EC29B9FFEE004EB049 /* Teller.swift in Sources */,
 			);

@@ -15,6 +15,7 @@ enum BankState: String {
 class Bank {
     private var clientsPerDay = 0
     private let bankQueue = BankQueue()
+    private let bankTimer = BankTimer()
     private let bankTeller: [Teller] = {
         var tellers: [Teller] = []
         Constants.tellerStaffing.forEach { (bankingType, tellerCount) in
@@ -27,6 +28,9 @@ class Bank {
     }()
 
     func assignBanking() {
+        if !bankTimer.isValid() {
+            bankTimer.start()
+        }
         bankTeller.forEach { teller in
             serveClient(teller)
         }
@@ -52,7 +56,18 @@ class Bank {
                 NotificationCenter.default.post(name: .finishedBankingClient, object: nil, userInfo: ["client": client])
             }
             teller.workState = .resting
+            if isRestAllofTeller() {
+                bankTimer.pause()
+            }
         }
+    }
+
+    private func isRestAllofTeller() -> Bool {
+        var bool = true
+        bankTeller.forEach { teller in
+            bool = (teller.workState == .resting) && bool
+        }
+        return bool
     }
 
     func enqueueClients() {
@@ -71,6 +86,7 @@ class Bank {
             queue.clear()
         }
         clientsPerDay = 0
+        bankTimer.reset()
     }
 }
 

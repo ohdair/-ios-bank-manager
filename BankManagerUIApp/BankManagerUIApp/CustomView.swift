@@ -28,7 +28,7 @@ class CustomView {
 
     let timerLabel: UILabel = {
         let label = UILabel()
-        label.text = "업무 시간"
+        label.text = "업무 시간 - 00:00:000"
         label.font = UIFont.boldSystemFont(ofSize: 26)
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
